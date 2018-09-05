@@ -10,14 +10,14 @@ class Credito(models.Model):
     #num de creditos não obrigatorios do aluno
     a_credito_l = models.IntegerField()
     def __str__(self):
-        return self.d_credito
+        return str(self.d_credito)
 
 
 class Departamento(models.Model):
     nome = models.CharField(max_length = 30)
 
     def __str__(self):
-        return self.nome
+        return str(self.nome)
 
 
 class Professor(models.Model):
@@ -25,7 +25,7 @@ class Professor(models.Model):
     departamento = models.ForeignKey(Departamento, on_delete=models.PROTECT, null=True)
 
     def __str__(self):
-        return self.nome
+        return str(self.nome)
 
 
 class Secretaria(models.Model):
@@ -34,7 +34,7 @@ class Secretaria(models.Model):
     departamento = models.ForeignKey(Departamento, on_delete=models.PROTECT, null=True)
 
     def __str__(self):
-        return self.nome
+        return str(self.nome)
 
 
 class Curso(models.Model):
@@ -42,7 +42,7 @@ class Curso(models.Model):
     secretaria = models.ForeignKey(Secretaria, on_delete=models.PROTECT, null=True)
 
     def __str__(self):
-        return self.nome
+        return str(self.nome)
 
 
 class Disciplina(models.Model):
@@ -52,11 +52,11 @@ class Disciplina(models.Model):
     obr_let = models.CharField(max_length = 30) 
     status = models.CharField(max_length = 30) 
     credito = models.ForeignKey(Credito, on_delete=models.PROTECT)
-    d_requisito = models.ManyToManyField('Disciplina')
+    d_requisito = models.ManyToManyField('Disciplina', blank = True)
     professor = models.ForeignKey(Professor, on_delete=models.PROTECT)
 
     def __str__(self):
-        return self.nome
+        return str(self.nome)
 
 
 class Aluno(models.Model):
@@ -67,4 +67,4 @@ class Aluno(models.Model):
     disciplinas = models.ManyToManyField(Disciplina, blank=True)
 
     def __str__(self):
-        return self.nome
+        return str(self.nome)
