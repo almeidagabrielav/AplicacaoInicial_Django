@@ -11,4 +11,4 @@ def artigo(request, ano):
 def home(request):
     #template = loader.get_template("index.html")
     context = RequestContext(request)
-    return HttpResponse(render_to_string('index.html', context))
+    return HttpResponse(template.render(context))
