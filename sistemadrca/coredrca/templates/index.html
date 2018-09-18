@@ -1,8 +1,12 @@
-<html>
-    <head>
-        <title>Home</title>
-    </head>
-    <body>
-        <h1>Sistema DRCA</h1>
-    </body>
-</html>
+{% extends "layout.html" %}
+{% block titulo%} Página Inicial {% endblock titulo %}
+{% block conteudo%}
+<body>
+    <div class="jumbotron jumbotron-fluid" style="padding: 100px;">
+        <div class="container">
+            <h1 class="display-4"><b>DRCA</b></h1>
+            <p class="lead">Departamento de Registro e Controle Acadêmico.</p>
+        </div>
+    </div>
+</body>
+{% endblock %}

@@ -1,0 +1,39 @@
+<html>
+
+<head>
+    <title>{% block titulo%} {% endblock titulo %}</title>
+    {% load bootstrap4 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+    {% bootstrap_messages %}
+    {% csrf_token %}
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand active" href="#">Início <span class="sr-only">(current)</span></a>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#"> Departamentos </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"> Disciplinas </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"> Alunos </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    {% block conteudo%}
+
+    {% endblock %}
+
+    <hr>
+    <h6 class="text-center">Copyright 2018 Gabriela Almeida - Todos os direitos reservados</h6>
+</body>
+
+</html>
