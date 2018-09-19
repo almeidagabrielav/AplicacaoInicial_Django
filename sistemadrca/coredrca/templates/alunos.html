@@ -2,7 +2,48 @@
 {% block titulo%} Alunos {% endblock titulo %}
 
 {% block conteudo%}
+
 <body>
-    {{alunos}}
+    <div class="container" style="margin-top: 5%">
+        <div class="input-group mb-5">
+            <input type="text" class="form-control" placeholder="Procurando por..." aria-label="Procurando por..."
+                aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button">Pesquisar</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h5 class="float-left" style="margin-top:4px">Alunos</h5>
+                <button class="btn btn-secondary float-right" type="button">Novo</button>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead style="background-color:lightgray;">
+                        <tr>
+                            <th>Matrícula</th>
+                            <th>Nome</th>
+                            <th>Curso</th>
+                            <th>Abrir</th>
+                            <th>Matrícula</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%for aluno in alunos%}
+                        <tr>
+                            <td>{{aluno.matricula}}</td>
+                            <td>{{aluno.nome}}</td>
+                            <td>{{aluno.curso}}</td>
+                            <td><i class="fas fa-plus-circle"></i></td>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
 </body>
 {% endblock %}
