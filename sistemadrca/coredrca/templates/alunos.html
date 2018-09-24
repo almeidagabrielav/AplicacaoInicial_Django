@@ -16,10 +16,14 @@
         <div class="card">
             <div class="card-header">
                 <h5 class="float-left" style="margin-top:4px">Alunos</h5>
-                <button class="btn btn-secondary float-right" type="button">
+                <button class="btn btn-secondary float-right" type="button" data-toggle="modal" data-target="#novoAlunoModal" href="{% url 'criarAluno' %}">
                     Novo
                     <i class="fas fa-plus-circle"></i>
                 </button>
+                <div class="modal fade" id="novoAlunoModal" tabindex="-1" role="dialog" aria-labelledby="novoAlunoModal"
+                    aria-hidden="true" data-backdrop="static">
+                    {%include 'modalNovoAluno.html'%}
+                </div>
             </div>
             <div class="card-body">
                 <table class="table text-center">
@@ -39,9 +43,19 @@
                             <td>{{aluno.matricula}}</td>
                             <td>{{aluno.nome}}</td>
                             <td>{{aluno.curso}}</td>
-                            <td><a href="/" style="color:black"><i class="fas fa-search-plus"></i></a></td>
-                            <td><a href="/" style="color:black"><i class="fas fa-edit"></i></a></td>
-                            <td><a href="/" style="color:black"><i class="fas fa-trash-alt"></i></a></td>
+                            <td><a style="color:black; cursor: pointer;"><i class="fas fa-search-plus" data-toggle="modal"
+                                        data-target="#verAlunoModal"></i></a></td>
+                            <div class="modal fade" id="verAlunoModal" tabindex="-1" role="dialog" aria-labelledby="verAlunoModal"
+                                aria-hidden="true" data-backdrop="static">
+                                {%include 'modalVerAluno.html'%}
+                            </div>
+
+                            <td><a style="color:black; cursor: pointer;"><i class="fas fa-edit" data-toggle="modal" data-target="#novoAlunoModal"></i></a></td>
+                            <div class="modal fade" id="novoAlunoModal" tabindex="-1" role="dialog" aria-labelledby="novoAlunoModal"
+                                aria-hidden="true" data-backdrop="static">
+                                {%include 'modalNovoAluno.html'%}
+                            </div>
+                            <td><a href="/" style="color:black; cursor: pointer;"><i class="fas fa-trash-alt"></i></a></td>
                         </tr>
                         {% endfor %}
 

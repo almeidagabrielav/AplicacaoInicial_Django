@@ -1,0 +1,50 @@
+
+<!-- Modal Novo Aluno -->
+
+<div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="novoAlunoModal"> <i class="far fa-user"></i> Cadastrar Aluno</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form method="POST">
+                {% csrf_token %}
+                {{form}}
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <input type="text" class="form-control" placeholder="Nome">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <input type="text" class="form-control" placeholder="Matrícula">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <select class="form-control" id="cbxCurso">
+                            <option>Selecione o Curso...</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <select class="form-control" id="cbxCredito">
+                            <option>Selecione o Crédito...</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <select class="form-control" id="cbxCurso">
+                            <option>Selecione as Disciplinas...</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-success">Cadastrar</button>
+        </div>
+    </div>
+</div>
