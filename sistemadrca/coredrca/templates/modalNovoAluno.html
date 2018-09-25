@@ -1,4 +1,3 @@
-
 <!-- Modal Novo Aluno -->
 
 <div class="modal-dialog modal-lg" role="document">
@@ -10,41 +9,47 @@
             </button>
         </div>
         <div class="modal-body">
-            <form method="POST">
+            <form action="/novoAluno/" method="POST">
                 {% csrf_token %}
-                {{form}}
+
                 <div class="form-row">
                     <div class="form-group col-md-12">
-                        <input type="text" class="form-control" placeholder="Nome">
+                        <input type="text" class="form-control" placeholder="Nome" value="{{nomeAtual}}">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <input type="text" class="form-control" placeholder="Matrícula">
+                        <input type="text" class="form-control" placeholder="Matrícula" value="{{matriculaAtual}}">
                     </div>
-                    <div class="form-group col-md-6">
+                    <!-- <div class="form-group col-md-6">
                         <select class="form-control" id="cbxCurso">
                             <option>Selecione o Curso...</option>
+                            {% for curso in cursos %}
+                            <option value="{{curso.id}}">{{ curso.nome }}</option>
+                            {% endfor %}
                         </select>
-                    </div>
+                    </div> -->
                 </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
+                <!--<div class="form-row">
+                     <div class="form-group col-md-6">
                         <select class="form-control" id="cbxCredito">
                             <option>Selecione o Crédito...</option>
+                            {% for credito in creditos %}
+                            <option>{{ curso.nome }}</option>
+                            {% endfor %}
                         </select>
-                    </div>
-                    <div class="form-group col-md-6">
+                    </div> 
+                    <div class="form-group col-md-12">
                         <select class="form-control" id="cbxCurso">
-                            <option>Selecione as Disciplinas...</option>
+                            <option>Selecione a Disciplina...</option>
+                            {% for disciplina in disciplinas %}
+                            <option value="{{disciplina.id}}">{{ disciplina.nome }}</option>
+                            {% endfor %}
                         </select>
                     </div>
-                </div>
+                </div>-->
+                <button type="submit" class="btn btn-success">Cadastrar</button>
             </form>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-success">Cadastrar</button>
         </div>
     </div>
 </div>
