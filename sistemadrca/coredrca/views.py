@@ -13,18 +13,30 @@ def alunos(request):
     context = {'alunos':alunos}
     return render(request, "alunos.html", context)
 
-def criarAluno(request):
-    form = ProductForm(request.POST or None)
-    cursos = Curso.objects.all()
-    disciplinas = Disciplina.objects.all()
+# def criarAluno(request):
+#     form = ProductForm(request.POST or None)
+#     cursos = Curso.objects.all()
+#     disciplinas = Disciplina.objects.all()
 
-    if form.is_valid():
-        form.save()
-        return redirect('alunos')
+#     if form.is_valid():
+#         form.save()
+#         return redirect('alunos')
     
-    return render(request, 'modalNovoAluno.html', {'form':form})
+#     return render(request, 'modalNovoAluno.html', {'form':form})
 
 def salvarAluno(request):
+    user = request.user
+    cursoId = 1
+    creditoId=1
     if request.method == 'POST':
         form = AlunoForm(request.POST)
-        if form.
+        if form.is_valid():
+            aluno = Aluno(
+                nome=request.POST['nomeAtual'],
+                matricula=request.POST['matriculaAtual']
+            ) 
+            aluno.save()
+    
+    alunos = Aluno.objects.all()
+
+    return render(request, 'alunos.html', {'form': form, 'alunos':alunos})

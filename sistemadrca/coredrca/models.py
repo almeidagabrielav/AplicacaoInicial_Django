@@ -63,7 +63,7 @@ class Aluno(models.Model):
     nome = models.CharField(max_length = 30)
     matricula = models.IntegerField()
     curso = models.ForeignKey(Curso, on_delete=models.PROTECT, null = True)
-    credito = models.ForeignKey(Credito, on_delete=models.PROTECT)
+    credito = models.ForeignKey(Credito, on_delete=models.PROTECT, null=True)
     disciplinas = models.ManyToManyField(Disciplina, blank=True)
 
     def __str__(self):

@@ -1,11 +1,18 @@
 from django import forms
 from .models import Aluno
 
-class ProductForm(form.ModelForm):
+class AlunoForm(forms.ModelForm):
+    nomeAtual = forms.CharField(required=True, widget=forms.TextInput(attrs={'name' : 'nomeAtual'}))
+    matriculaAtual = forms.CharField(required=True, widget=forms.TextInput(attrs={'name' : 'matriculaAtual'}))
+
     class Meta:
         model = Aluno
-        fields = ['nome', 'matricula', 'curso', 'credito', 'disciplinas']
+        fields = ['nomeAtual', 'matriculaAtual']
 
-class AlunoForm(forms.Form):
-    nomeAtual = forms.CharField(max_length=100)
-    matriculaAtual = forms.CharField(max_length=50)
+    def clean(self):
+        nomeAtual = self.cleaned_data.get('nomeAtual')
+        matriculaAtual = self.cleaned_data.get('matriculaAtual')
+
+        if nomeAtual is None or matriculaAtual is None:
+            raise forms.ValidationError("O Nome e a Matrícula do aluno são obrigatórios")
+        return self.cleaned_data

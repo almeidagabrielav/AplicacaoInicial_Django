@@ -9,19 +9,25 @@
             </button>
         </div>
         <div class="modal-body">
-            <form action="/novoAluno/" method="POST">
+            <form method="POST" action="/salvarAluno" >
                 {% csrf_token %}
 
                 <div class="form-row">
                     <div class="form-group col-md-12">
-                        <input type="text" class="form-control" placeholder="Nome" value="{{nomeAtual}}">
+                        <input type="text" class="form-control" name="nomeAtual" id="nomeAtual" placeholder="Nome" value="{{nomeAtual}}" required>
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <input type="text" class="form-control" placeholder="Matrícula" value="{{matriculaAtual}}">
+                    <div class="form-group col-md-4">
+                        <input type="text" class="form-control" name="matriculaAtual" id="matriculaAtual" placeholder="Matrícula" value="{{matriculaAtual}}" required>
                     </div>
-                    <!-- <div class="form-group col-md-6">
+                    <!--<div class="form-group col-md-4">
+                        <input type="text" class="form-control" name="cursoId" id="cursoId" placeholder="CursoId" value="{{cursoId}}" required>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <input type="text" class="form-control" name="creditoId" id="creditoId" placeholder="CreditoId" value="{{creditoId}}" required>
+                    </div>
+                     <div class="form-group col-md-6">
                         <select class="form-control" id="cbxCurso">
                             <option>Selecione o Curso...</option>
                             {% for curso in cursos %}
@@ -48,7 +54,10 @@
                         </select>
                     </div>
                 </div>-->
-                <button type="submit" class="btn btn-success">Cadastrar</button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-success">Salvar</button>
+                </div>
             </form>
         </div>
     </div>
