@@ -1,6 +1,6 @@
 <!-- Modal Ver Aluno -->
 
-<div class="modal-dialog modal-lg" role="document">
+<div class="modal-dialog" role="document">
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="verAlunoModal"> <i class="far fa-user"></i> Vizualizar Aluno</h5>
@@ -12,30 +12,26 @@
             <form>
                 <div class="form-row">
                     <div class="form-group col-md-12">
-                        <label>Nome: </label>
+                        <label>Nome: {{aluno.nome}}</label>
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label>Matrícula: </label>
-                    </div>
+                    <div class="form-group col-md-12">
+                        <label>Matrícula: {{aluno.matricula}}</label>
+                    <!-- </div>
                     <div class="form-group col-md-6">
                         <label>Curso: </label>
-                    </div>
+                    </div> -->
                 </div>
-                <div class="form-row">
+                <!-- <div class="form-row">
                     <div class="form-group col-md-6">
                         <label>Crédito: </label>
                     </div>
                     <div class="form-group col-md-6">
                         <label>Disciplinas: </label>
                     </div>
-                </div>
+                </div> -->
             </form>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-success">Cadastrar</button>
         </div>
     </div>
 </div>
