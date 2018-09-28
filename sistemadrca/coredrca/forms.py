@@ -1,6 +1,13 @@
 from django import forms
 from .models import Aluno
 
+class BuscaAlunoForm(forms.ModelForm):
+    busca = forms.CharField(required=True, widget=forms.TextInput(attrs={'name' : 'busca'}))
+
+    class Meta:
+        model = Aluno
+        fields = ['busca']
+
 class AlunoForm(forms.ModelForm):
     nomeAtual = forms.CharField(required=True, widget=forms.TextInput(attrs={'name' : 'nomeAtual'}))
     matriculaAtual = forms.CharField(required=True, widget=forms.TextInput(attrs={'name' : 'matriculaAtual'}))

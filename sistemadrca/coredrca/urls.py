@@ -5,5 +5,5 @@ urlpatterns = [
     path('', views.home, name='home'),
     re_path(r'alunos$', views.alunos, name='alunos'),
     re_path(r'salvarAluno$', views.salvarAluno, name='salvarAluno'),
-    #re_path(r'alunos$', views.BuscaAlunoView.as_view(), name='filtroAlunos'),
+    re_path(r'obterAluno$', views.obterAluno, name='obterAluno'),
 ]

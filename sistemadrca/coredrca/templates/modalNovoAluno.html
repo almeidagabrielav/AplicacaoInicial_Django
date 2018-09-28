@@ -9,7 +9,7 @@
             </button>
         </div>
         <div class="modal-body">
-            <form method="POST" action="/salvarAluno" >
+            <form method="POST" action="/obterAluno{{aluno.id}}" >
                 {% csrf_token %}
 
                 <div class="form-row">
@@ -55,7 +55,7 @@
                     </div>
                 </div>-->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-success">Salvar</button>
                 </div>
             </form>

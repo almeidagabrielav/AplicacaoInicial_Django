@@ -6,11 +6,14 @@
 <body>
     <div class="container" style="margin-top: 5%">
         <div class="input-group mb-5">
-            <input type="text" class="form-control" placeholder="Procurando por..." aria-label="Procurando por..."
-                aria-describedby="basic-addon2">
-            <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button">Pesquisar</button>
-            </div>
+            <form method="GET" action="/obterAluno{{aluno.id}}">
+                {% csrf_token %}
+                <input type="text" class="form-control" placeholder="Procurando por..." aria-label="Procurando por..."
+                    aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit">Pesquisar</button>
+                </div>
+            </form>
         </div>
 
         <div class="card">
@@ -37,10 +40,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {%for aluno in alunos%}
+                        {%for a in alunos%}
                         <tr>
-                            <td>{{aluno.matricula}}</td>
-                            <td>{{aluno.nome}}</td>
+                            <td>{{a.matricula}}</td>
+                            <td>{{a.nome}}</td>
                             <td><a style="color:black; cursor: pointer;"><i class="fas fa-search-plus" data-toggle="modal"
                                         data-target="#verAlunoModal"></i></a></td>
                             <div class="modal fade" id="verAlunoModal" tabindex="-1" role="dialog" aria-labelledby="verAlunoModal"
@@ -48,7 +51,8 @@
                                 {%include 'modalVerAluno.html'%}
                             </div>
 
-                            <td><a style="color:black; cursor: pointer;"><i class="fas fa-edit" data-toggle="modal" data-target="#novoAlunoModal"></i></a></td>
+                            <td><a style="color:black; cursor: pointer;"><i class="fas fa-edit" data-toggle="modal"
+                                        data-target="#novoAlunoModal"></i></a></td>
                             <div class="modal fade" id="novoAlunoModal" tabindex="-1" role="dialog" aria-labelledby="novoAlunoModal"
                                 aria-hidden="true" data-backdrop="static">
                                 {%include 'modalNovoAluno.html'%}
