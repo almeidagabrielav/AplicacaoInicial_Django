@@ -18,7 +18,6 @@ def obterAluno(request, alunoId):
     context = {'aluno':aluno}
     return render(request, 'modalVerAluno.html', context)
 
-
 def salvarAluno(request):
     user = request.user
     if request.method == 'POST':
@@ -34,10 +33,8 @@ def salvarAluno(request):
 
     return render(request, 'alunos.html', {'form': form, 'alunos':alunos})
 
-# def filtrarAluno(request):
-#     if request.method == 'GET':
-#         form = 
-#         alunos = Aluno.objects.get(id=alunoId)
-#         context = {'alunos':alunos}
-
-#     return render(request, 'alunos.html', {'form': form, 'alunos':alunos})
+def filtrarAluno(request, parametroFiltro):
+    user = request.user
+    alunos = Aluno.objects.get(nome=parametroFiltro)
+    context = {'alunos':alunos}
+    return render(request, 'alunos.html', context)
