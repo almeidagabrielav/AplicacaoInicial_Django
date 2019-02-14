@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block titulo%} Alunos {% endblock titulo %}
+
+{% block conteudo%}
+
+<body>
+    <div class="container" style="margin-top: 5%">
+        <div class="card">
+            <div class="card-body">
+                <table class="table text-center">
+                    <thead style="background-color:lightgray;">
+                        <tr>
+                            <th>Tipo de Alteracao</th>
+                            <th>Id do Usuário</th>
+                            <th>Ip da Máquina</th>
+                            <th>Data de Alteração</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%for transacao in transacoes%}
+                        <tr>
+                            <td>{{transacao.TipoAlteracao}}</td>
+                            <td>{{transacao.UsuarioId}}</td>
+                            <td>{{transacao.Ip}}</td>
+                            <td>{{transacao.DataAlteracao}}</td>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</body>
+{% endblock %}

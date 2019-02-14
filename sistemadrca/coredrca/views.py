@@ -4,7 +4,46 @@ from django.template import RequestContext
 from coredrca.models import Aluno, Curso, Disciplina
 from .forms import AlunoForm
 from django.db.models import Q
+import coreapi, json, requests
 
+def listarTransacoes(request):
+    user = request.user
+    dados = data = {
+        "TipoAlteracao": "update",
+        "UsuarioId": "22",
+        "Ip": "22aa",
+        "Tabelas": [
+        {
+            "Nome": "Tab1",
+            "Esquema": "aaa",
+            "Atributos": [
+            {
+                "CampoAlterado": "xxx",
+                "ValorInicial": "a",
+                "ValorFinal": "b"
+            }]
+        },
+        {
+            "Nome": "Tab3",
+            "Esquema": "aaa",
+            "Atributos": [
+            {
+                "CampoAlterado": "xxx",
+                "ValorInicial": "a",
+                "ValorFinal": "b"
+            },
+            {
+                "CampoAlterado": "aaa",
+                "ValorInicial": "c",
+                "ValorFinal": "d"
+            }]
+        }]
+    }
+    response = requests.post("http://localhost:7000/transacoes", data = dados)
+    print (response.status_code)
+    #print(response.content)
+    #context = { 'transacoes':response.content }
+    #return render(request, 'sismadServer.html', context)
 
 def home(request):
     return render(request, "index.html")
@@ -50,6 +89,9 @@ def excluirAluno(request, alunoId):
     return render(request, 'alunos.html', context)
 
 def salvarAluno(request):
+    # client = coreapi.Client()
+    # schema = client.get('http://127.0.0.1:8000/schema/')
+    
     user = request.user
     if request.method == 'POST':
         form = AlunoForm(request.POST)
@@ -59,7 +101,9 @@ def salvarAluno(request):
                 matricula=request.POST['matriculaAtual']
             ) 
             aluno.save()
+
+    # novaTransacao = client.action(schema, ['transacoes', 'create'], params={"TipoAlteracao":"Insert","UsuarioId":"3","Ip":"TesteIntegracao111"})
     
     alunos = Aluno.objects.all()
 
-    return render(request, 'alunos.html', {'form': form, 'alunos':alunos})
+    return render(request, 'alunos', {'form': form, 'alunos':alunos})
