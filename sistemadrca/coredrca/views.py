@@ -35,6 +35,7 @@ def alunos(request):
 def editarAluno(request, alunoId):
     user = request.user
     aluno = Aluno.objects.get(id=alunoId)
+    alunoCopia = aluno
 
     if request.method == 'POST':
         form = AlunoForm(request.POST)
