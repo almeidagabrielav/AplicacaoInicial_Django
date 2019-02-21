@@ -3,47 +3,15 @@ from django.http.response import HttpResponse
 from django.template import RequestContext
 from coredrca.models import Aluno, Curso, Disciplina
 from .forms import AlunoForm
+from collections import namedtuple
 from django.db.models import Q
 import coreapi, json, requests
 
-def listarTransacoes(request):
-    user = request.user
-    dados = data = {
-        "TipoAlteracao": "update",
-        "UsuarioId": "22",
-        "Ip": "22aa",
-        "Tabelas": [
-        {
-            "Nome": "Tab1",
-            "Esquema": "aaa",
-            "Atributos": [
-            {
-                "CampoAlterado": "xxx",
-                "ValorInicial": "a",
-                "ValorFinal": "b"
-            }]
-        },
-        {
-            "Nome": "Tab3",
-            "Esquema": "aaa",
-            "Atributos": [
-            {
-                "CampoAlterado": "xxx",
-                "ValorInicial": "a",
-                "ValorFinal": "b"
-            },
-            {
-                "CampoAlterado": "aaa",
-                "ValorInicial": "c",
-                "ValorFinal": "d"
-            }]
-        }]
-    }
-    response = requests.post("http://localhost:7000/transacoes", data = dados)
-    print (response.status_code)
-    #print(response.content)
-    #context = { 'transacoes':response.content }
-    #return render(request, 'sismadServer.html', context)
+def _json_object_hook(d): 
+    return namedtuple('X', d.keys())(*d.values())
+
+def converterJSONParaObjeto(data): 
+    return json.loads(data, object_hook=_json_object_hook)
 
 def home(request):
     return render(request, "index.html")
@@ -88,10 +56,7 @@ def excluirAluno(request, alunoId):
 
     return render(request, 'alunos.html', context)
 
-def salvarAluno(request):
-    # client = coreapi.Client()
-    # schema = client.get('http://127.0.0.1:8000/schema/')
-    
+def salvarAluno(request):    
     user = request.user
     if request.method == 'POST':
         form = AlunoForm(request.POST)
@@ -101,9 +66,39 @@ def salvarAluno(request):
                 matricula=request.POST['matriculaAtual']
             ) 
             aluno.save()
-
-    # novaTransacao = client.action(schema, ['transacoes', 'create'], params={"TipoAlteracao":"Insert","UsuarioId":"3","Ip":"TesteIntegracao111"})
     
     alunos = Aluno.objects.all()
 
     return render(request, 'alunos', {'form': form, 'alunos':alunos})
+
+def listarTransacoes(request):
+    user = request.user
+    response = requests.get('http://localhost:8000/transacoes')
+    print (response.status_code)
+    transacoes = converterJSONParaObjeto(response.content)
+
+    context = { 'transacoes':transacoes }
+    return render(request, 'transacoes.html', context)
+
+def enviarTransacao(request):
+    user = request.user
+    dados = {
+                "TipoAlteracao": "CREATE",
+                "UsuarioId": "5",
+                "Ip": "SISDRCA",
+                "Tabelas": [
+                {
+                    "Nome": "TABELASISDRCA",
+                    "Esquema": "DRCA",
+                    "Atributos": [
+                    {
+                        "CampoAlterado": "TESTECONECT",
+                        "ValorInicial": "vl",
+                        "ValorFinal": "vo"
+                    }]
+                }]
+            }
+    response = requests.post(url = "http://localhost:8000/transacoes/", json = dados)
+    print (response.status_code)
+
+    return render(request, 'index.html')

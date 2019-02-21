@@ -8,5 +8,6 @@ urlpatterns = [
     re_path(r'editarAluno/(?P<alunoId>\d{2})$', views.editarAluno, name='editarAluno'),
     re_path(r'excluirAluno/(?P<alunoId>\d{2})$', views.excluirAluno, name='excluirAluno'),
     re_path(r'obterAluno/(?P<alunoId>\d{2})$', views.obterAluno, name='obterAluno'),
-    re_path(r'sismadServer$', views.listarTransacoes, name='transacoes'),
+    re_path(r'transacoes/$', views.listarTransacoes, name='transacoes'),
+    re_path(r'postTransacao/$', views.enviarTransacao, name='postTransacao'),
 ]
