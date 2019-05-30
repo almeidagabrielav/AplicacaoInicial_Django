@@ -74,7 +74,7 @@ def salvarAluno(request):
 
 def listarTransacoes(request):
     user = request.user
-    response = requests.get('http://localhost:8000/transacoes')
+    response = requests.get('http://localhost:8000/transacoes/')
     print (response.status_code)
     transacoes = converterJSONParaObjeto(response.content)
 
@@ -84,8 +84,8 @@ def listarTransacoes(request):
 def enviarTransacao(request):
     user = request.user
     dados = {
-                "TipoAlteracao": "CREATE",
-                "UsuarioId": "5",
+                "TipoAlteracao": "DELETE",
+                "UsuarioId": "24",
                 "Ip": "SISDRCA",
                 "Tabelas": [
                 {
@@ -93,9 +93,9 @@ def enviarTransacao(request):
                     "Esquema": "DRCA",
                     "Atributos": [
                     {
-                        "CampoAlterado": "TESTECONECT",
-                        "ValorInicial": "vl",
-                        "ValorFinal": "vo"
+                        "CampoAlterado": "AAAA",
+                        "ValorInicial": "v0",
+                        "ValorFinal": "v1"
                     }]
                 }]
             }
