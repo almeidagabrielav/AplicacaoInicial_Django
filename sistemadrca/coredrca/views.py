@@ -87,6 +87,7 @@ def enviarTransacao(request):
                 "TipoAlteracao": "DELETE",
                 "UsuarioId": "24",
                 "Ip": "SISDRCA",
+                "Guid": "d2e16e86-85db-11ea-83b6-14dda9bf647f",
                 "Tabelas": [
                 {
                     "Nome": "TABELASISDRCA",
