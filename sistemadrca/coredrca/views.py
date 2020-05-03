@@ -5,7 +5,7 @@ from coredrca.models import Aluno, Curso, Disciplina
 from .forms import AlunoForm
 from collections import namedtuple
 from django.db.models import Q
-import coreapi, json, requests
+import  json, requests
 
 def _json_object_hook(d): 
     return namedtuple('X', d.keys())(*d.values())
@@ -87,7 +87,7 @@ def enviarTransacao(request):
                 "TipoAlteracao": "DELETE",
                 "UsuarioId": "24",
                 "Ip": "SISDRCA",
-                "Guid": "d2e16e86-85db-11ea-83b6-14dda9bf647f",
+                "Guid": "d5263c8e-8d7f-11ea-a7f3-34238774efe4",
                 "Tabelas": [
                 {
                     "Nome": "TABELASISDRCA",
